@@ -1,5 +1,6 @@
 #sample sets + real set (last element)
-sets = [[0,3,6], [1,3,2], [2,1,3], [1,2,3], [2,3,1], [3,2,1], [3,1,2], [19,20,14,0,9,1]]
+#sets = [[0,3,6], [1,3,2], [2,1,3], [1,2,3], [2,3,1], [3,2,1], [3,1,2], [19,20,14,0,9,1]]
+sets = [[19,20,14,0,9,1]]
 
 
 # so for a very large number of rounds, the naive approach from part 1 won't work.
@@ -8,7 +9,7 @@ sets = [[0,3,6], [1,3,2], [2,1,3], [1,2,3], [2,3,1], [3,2,1], [3,1,2], [19,20,14
 
 sets.each do |s|
   round = 0
-  seen = Hash.new
+  seen = Array.new
   last = 0
   s.each do |e|
     round += 1
@@ -16,7 +17,7 @@ sets.each do |s|
     last = e
   end
 
-  (s.size+1..30000000).each do |count|
+  while round < 30000000
     round += 1
     # check last number and see if we've seen it before
     lastseen = seen[last]
